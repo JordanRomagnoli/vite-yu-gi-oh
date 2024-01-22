@@ -4,6 +4,7 @@ import AppMain from './components/AppMain.vue';
 import AppFooter from './components/AppFooter.vue';
 import Axios from 'axios';
 import { store } from './store.js';
+import LoadingGif from './components/LoadingGif.vue';
 
 
 export default {
@@ -11,15 +12,22 @@ export default {
         return { 
 
             store,
+            loadingFlag: true,
         }
     },
     components: {
 
         AppHeader,
         AppMain,
-        AppFooter
+        AppFooter,
+        LoadingGif,
     },
-    created() {
+    created(){
+        setTimeout(()=>{
+            this.loadingFlag = false;
+        }, 1500)
+    },
+    mounted() {
         Axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=15&offset=0')
         .then((res) => {
             this.store.cardsList = res.data.data;
@@ -31,17 +39,22 @@ export default {
 
 <template>
 
-    <header>
-        <AppHeader/>
-    </header>
+    <LoadingGif v-if="loadingFlag"/>
 
-    <main>
-        <AppMain/>
-    </main>
+    <div v-else>
+        <header>
+            <AppHeader/>
+         </header>
 
-    <footer>
-        <AppFooter/>
-    </footer>
+        <main>
+            <AppMain/>
+        </main>
+
+        <footer>
+            <AppFooter/>
+        </footer>
+    </div>
+    
         
 </template>
 

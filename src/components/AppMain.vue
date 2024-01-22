@@ -25,7 +25,7 @@
             </div>  
             
 
-            <div class="row p-5 bg-white g-0 ">
+            <div class="row p-5 bg-white g-0 rounded-4">
                 <div class="col-12 p-3 bg-dark text-white fw-bold mb-2 rounded-1  ">
                     <span>Found {{ store.cardsList.length }} cards</span>
                 </div>
@@ -35,8 +35,6 @@
                 :card="elem"
                 :arc="elem.archetype"
                 />
-
-                
                 
             </div>
         </div>
