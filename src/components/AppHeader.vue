@@ -2,27 +2,23 @@
     export default {
         data() {
             return { 
-                title: 'Ciao ragazzi' 
+        
             }
         },
     }
     </script>
 
 <template>
-    <header class="main-title">
-        <h1>
-            <p>
-                {{ title }}
-            </p>
+    <div class="px-3 py-4 d-flex align-items-center">
+        <div class="logo_frame">
+            <img src="../assets/img/Yu-Gi-Oh!.png" alt="Yu-Gi-Oh_logo" class="w-100">
+        </div>
+        <h1 class="ms-2 mb-0">
+            Yu-Gi-Oh Api
         </h1>
-    </header>
+    </div>
 </template>
 
 <style lang="scss" scoped>
-    h1{
-        p{
-            color: red;
-            text-align: center;
-        }
-    }
+@use "../assets/scss/header.scss" as *;
 </style>

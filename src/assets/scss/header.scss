@@ -1,0 +1,14 @@
+@use "./partials/mixins" as *;
+@use "./partials/variables" as *;
+
+
+.logo_frame{
+    display: flex;
+    align-items: center;
+    width: 80px;
+    height: 80px;
+
+    img{
+        margin: 0 auto;
+    }
+}

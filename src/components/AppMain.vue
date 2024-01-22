@@ -2,20 +2,28 @@
     export default {
         data() {
             return { 
-                title: 'Questo è il main' 
+                 
             }
         },
     }
     </script>
 
 <template>
-    <main class="main-title">
-        <h1>
-            {{ title }}
-        </h1>
-    </main>
+    <div class="bg-warning p-5 ">
+        <select name="" id="">
+            <option value="">Alien</option>
+        </select>
+
+        <div class="row p-5 bg-white">
+            <div class="col-12 p-3 bg-dark text-white fw-bold">
+                <span>Found # cards</span>
+            </div>
+
+            
+        </div>
+    </div>
 </template>
 
 <style lang="scss" scoped>
-    
+@use "../assets/scss/main.scss" as *;
 </style>
