@@ -5,13 +5,23 @@
     export default {
         data() {
             return { 
-
-                store
+                selectedArc: null,
+                singleArc: [],
+                store,
             }
         },
         components: {
             SingleCard,
-        }, 
+        },
+        methods: {
+            filteredCards() {
+                if (!this.selectedArc) {
+                    return this.store.cardsList;
+                } else {
+                    return this.store.cardsList.filter((card) => card.archetype === this.selectedArc);
+                }
+            },
+        },
     }
     </script>
 
@@ -19,8 +29,9 @@
     <div class="bg-warning p-5 ">
         <div class=" container-xl ">
             <div class=" w-25 mb-3">
-                <select class="form-select" aria-label="Default select example">
-                    <option value="1">Alien</option>
+                <select class="form-select" v-model="selectedArc" aria-label="Default select example">
+                    <option value="">All</option>
+                    <option v-for="(elem, i) in store.selectArc">{{elem}}</option>
                 </select>
             </div>  
             
@@ -30,11 +41,14 @@
                     <span>Found {{ store.cardsList.length }} cards</span>
                 </div>
 
+            
                 <SingleCard 
-                v-for="(elem, i) in store.cardsList"
+                v-for="(elem, i) in filteredCards()"
                 :card="elem"
                 :arc="elem.archetype"
                 />
+                
+                
                 
             </div>
         </div>

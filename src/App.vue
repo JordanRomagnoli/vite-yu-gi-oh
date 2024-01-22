@@ -10,9 +10,8 @@ import LoadingGif from './components/LoadingGif.vue';
 export default {
     data() {
         return { 
-
-            store,
             loadingFlag: true,
+            store,
         }
     },
     components: {
@@ -22,24 +21,37 @@ export default {
         AppFooter,
         LoadingGif,
     },
-    created(){
-        setTimeout(()=>{
-            this.loadingFlag = false;
-        }, 1500)
-    },
-    mounted() {
-        Axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=15&offset=0')
+    methods: {
+        addOption(){
+            for(let i = 0; i < this.store.cardsList.length; i++){
+                if ((this.store.cardsList[i].archetype !== undefined) && (!this.store.selectArc.includes(this.store.cardsList[i].archetype))) {
+                    this.store.selectArc.push(this.store.cardsList[i].archetype);
+                    console.log(this.store.selectArc);
+                }
+            }
+        }
+    },  
+    // created(){
+    //     setTimeout(()=>{
+    //         this.loadingFlag = false;
+    //     }, 1500)
+    // },
+    created() {
+        Axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
         .then((res) => {
             this.store.cardsList = res.data.data;
-            console.log(this.store.cardsList);
         })
+    },
+    updated(){
+        this.addOption()
+        
     },
 }
 </script>
 
 <template>
 
-    <LoadingGif v-if="loadingFlag"/>
+    <LoadingGif v-if="store.cardsList.length < 15"/>
 
     <div v-else>
         <header>
