@@ -25,6 +25,7 @@
         <div class=" container-xl ">
             <div class=" w-25 mb-3">
                 <select class="form-select" name="type" v-model="store.activeArc" @click="$emit('arcFilter')" aria-label="Default select example">
+                    <option value="">All</option>
                     <option name="type" v-for="(elem, i) in store.arcList" :value="elem" @click="changeActiveArc(value)" :key="i">{{elem}}</option>
                 </select>
             </div>  
