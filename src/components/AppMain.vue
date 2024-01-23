@@ -17,7 +17,8 @@
             filteredCards() {
                 if (!this.selectedArc) {
                     return this.store.cardsList;
-                } else {
+                } 
+                else {
                     return this.store.cardsList.filter((card) => card.archetype === this.selectedArc);
                 }
             },
@@ -38,7 +39,7 @@
 
             <div class="row p-5 bg-white g-0 rounded-4">
                 <div class="col-12 p-3 bg-dark text-white fw-bold mb-2 rounded-1  ">
-                    <span>Found {{ store.cardsList.length }} cards</span>
+                    <span>Found {{ filteredCards().length }} cards</span>
                 </div>
 
             
