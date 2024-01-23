@@ -22,36 +22,37 @@ export default {
         LoadingGif,
     },
     methods: {
-        addOption(){
-            for(let i = 0; i < this.store.cardsList.length; i++){
-                if ((this.store.cardsList[i].archetype !== undefined) && (!this.store.selectArc.includes(this.store.cardsList[i].archetype))) {
-                    this.store.selectArc.push(this.store.cardsList[i].archetype);
-                    console.log(this.store.selectArc);
+
+        getResponse(){
+            
+            Axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php', {
+                params:{
+                    archetype: this.store.activeArc,
                 }
-            }
+            })
+            .then((res) => {
+                this.store.cardsList = res.data.data;
+            })
         }
-    },  
-    // created(){
-    //     setTimeout(()=>{
-    //         this.loadingFlag = false;
-    //     }, 1500)
-    // },
+    },
     created() {
-        Axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=100&offset=0')
+
+        this.getResponse();
+
+        Axios.get('https://db.ygoprodeck.com/api/v7/archetypes.php')
         .then((res) => {
-            this.store.cardsList = res.data.data;
+            
+            for(let i = 0; i < res.data.length; i++){
+                this.store.arcList.push(res.data[i].archetype_name)
+            }
         })
-    },
-    updated(){
-        this.addOption()
-        
-    },
+    }
 }
 </script>
 
 <template>
 
-    <LoadingGif v-if="store.cardsList.length < 15"/>
+    <LoadingGif v-if="loadingFlag == false"/>
 
     <div v-else>
         <header>
@@ -59,7 +60,7 @@ export default {
          </header>
 
         <main>
-            <AppMain/>
+            <AppMain @arcFilter="getResponse()"/>
         </main>
 
         <footer>
@@ -67,9 +68,16 @@ export default {
         </footer>
     </div>
     
-        
+
 </template>
 
 <style lang="scss">
+// created(){
+//     setTimeout(()=>{
+//         this.loadingFlag = false;
+//     }, 1500)
+// },
 @import "bootstrap/scss/bootstrap";
 </style>
+
+
