@@ -23,8 +23,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        
 
         img{
+            filter: contrast(1.4);
             width: 80px;
             height: 80px;
         }

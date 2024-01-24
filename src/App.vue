@@ -43,7 +43,12 @@ export default {
             
         }
     },
-    created() {
+    created(){
+        setTimeout(()=>{
+            this.loadingFlag = false;
+        }, 1500)
+    },
+    mounted() {
 
         this.getResponse();
 
@@ -60,7 +65,7 @@ export default {
 
 <template>
 
-    <LoadingGif v-if="loadingFlag == false"/>
+    <LoadingGif v-if="loadingFlag == true"/>
 
     <div v-else>
         <header>
@@ -80,11 +85,7 @@ export default {
 </template>
 
 <style lang="scss">
-// created(){
-//     setTimeout(()=>{
-//         this.loadingFlag = false;
-//     }, 1500)
-// },
+
 @import "bootstrap/scss/bootstrap";
 </style>
 
