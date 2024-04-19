@@ -19,7 +19,7 @@
     </script>
 
 <template>
-    <div class="bg-warning p-5 ">
+    <div class="p-5 ">
         <div class=" container-xl ">
             <div class=" w-25 mb-3">
                 <select class="form-select" name="type" v-model="store.activeArc" @change="$emit('arcFilter')" aria-label="Default select example">
@@ -29,7 +29,7 @@
             </div>  
             
 
-            <div class="row p-5 bg-white g-0 rounded-4">
+            <div class="row bg-white g-0 rounded-4">
                 <CardCounter/>
             
                 <SingleCard 

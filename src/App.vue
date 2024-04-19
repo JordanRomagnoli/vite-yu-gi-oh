@@ -24,31 +24,25 @@ export default {
     methods: {
 
         getResponse(){
-
-            if(this.store.activeArc == ''){
-                Axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0')
-                .then((res) => {
-                    this.store.cardsList = res.data.data;
-                })
-            }else{
-                Axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0', {
-                    params:{
-                        archetype: this.store.activeArc,
-                    }
-                })
-                .then((res) => {
-                    this.store.cardsList = res.data.data;
-                })
-            }
+            
+            Axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?num=20&offset=0', {
+                params:{
+                    archetype: this.store.activeArc.length > 0 ? this.store.activeArc : null,
+                }
+            })
+            .then((res) => {
+                this.store.cardsList = res.data.data;
+            })
+            .catch((err)=>{
+                this.store.cardsList = [];
+            })
+            .finally(()=>{
+                this.loadingFlag = false;
+            })
             
         }
     },
-    created(){
-        setTimeout(()=>{
-            this.loadingFlag = false;
-        }, 1500)
-    },
-    mounted() {
+    created() {
 
         this.getResponse();
 
