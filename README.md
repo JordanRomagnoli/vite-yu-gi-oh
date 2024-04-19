@@ -4,7 +4,7 @@ Questo progetto è stato realizzato utilizzando Vite e Vue 3 per creare un'appli
 
 ## Descrizione
 
-Il progetto è un'applicazione web che mostra le carte Yu Gi Oh in base ai dati ottenuti da un'API esterna. Le carte vengono visualizzate nel layout come mostrato nello screenshot allegato.
+Il progetto è un'applicazione web che mostra le carte Yu Gi Oh in base ai dati ottenuti da un'API esterna.
 
 ## Chiamata API
 
